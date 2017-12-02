@@ -1,7 +1,6 @@
+// 1st solution 
 function whatIsInAName(collection, source) {
-  // What's in a name?
   var arr = [];
-  // Only change code below this line
   var srKey, srKey_val;
   for(var key in source){
     srKey = key;
@@ -13,10 +12,38 @@ function whatIsInAName(collection, source) {
         arr.push(collection[i]);
       }
     }
-  }
-  
-  // Only change code above this line
+  }  
+  return arr;
+}
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
+// 2nd solution
+function whatIsInAName(collection,source){
+  var arr = [];
+  arr = collection.filter(function(item,index){
+    for(var key in source){
+      if(!item.hasOwnProperty(key)||item[key]!==source[key]){
+        return false;
+      }
+    }
+   return true;
+  });
   return arr;
 }
 
-whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+// 3rd solution
+function whatIsInAName(collection,source){
+    var arr = [];
+    var keys = Object.keys(source);
+    arr = collection.filter(function(item,index){
+        for(var i = 0; i < keys.length; i++){
+            if(!item.hasOwnProperty(keys[i]) || item[keys[i]] !== source[keys[i]]){
+                return false;
+            }
+        }
+        return true;
+    });
+    return arr;
+}
+
+

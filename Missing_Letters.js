@@ -1,3 +1,4 @@
+// 1st solution
 function fearNotLetter(str) {
   str = str.toLowerCase();
   var len = str.length;
@@ -21,3 +22,24 @@ function fearNotLetter(str) {
   }
 }
 fearNotLetter("abce");
+
+// 2nd solution
+function fearNotLetter(str) {
+  var arr = str.split("");
+  var temp = [];
+  var start = str.charCodeAt(0);
+  var end = str.charAt(str.length - 1).charCodeAt(0);
+  for(var i = start; i < end + 1; i++){
+    var item = String.fromCharCode(i);
+    if(arr[0] !== item){  
+      temp.push(item);
+    }else{
+      arr.shift();
+    }
+  }
+  if(temp.length === 0){
+    return undefined;
+  }else{
+    return temp.join("");
+  }  
+}
